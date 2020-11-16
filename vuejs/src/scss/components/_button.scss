@@ -1,0 +1,96 @@
+@import "../gobal.variables";
+
+$button-border-radius: 5px !default;
+
+$button-sizes: (
+  initial: 0.9rem,
+  small: 0.75rem,
+  large: 1.25rem,
+) !default;
+
+$button-color: $darker-color !default;
+$button-fill: solid !default;
+
+@mixin button-base() {
+  cursor: pointer;
+  text-transform: uppercase;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 5px;
+  padding: 0.8em 1.2em;
+  font-size: map-get($button-sizes, initial);
+  margin: 0.2rem;
+}
+
+@mixin button-hollow {
+  &,
+  &.disabled,
+  &[disabled] {
+    &,
+    &:hover,
+    &:focus {
+      background-color: transparent;
+    }
+  }
+}
+
+@mixin button-clear {
+  &,
+  &.disabled,
+  &[disabled] {
+    &,
+    &:hover,
+    &:focus {
+      border-color: transparent;
+      background-color: transparent;
+    }
+  }
+}
+
+@mixin button-fill($fill: $button-fill) {
+  @if $fill == hollow {
+    @include button-hollow;
+  } @else if $fill == clear {
+    @include button-clear;
+  }
+}
+
+@mixin button-sizes-style() {
+  @each $size, $value in map-remove($button-sizes, initial) {
+    &.#{$size} {
+      font-size: $value;
+    }
+  }
+}
+
+@mixin button-solid-style(
+  $bg-color: map-get($palette, initial),
+  $color: $button-color
+) {
+  background-color: $bg-color;
+  border-color: darken($bg-color, 5);
+  color: $color;
+  &:hover {
+    background-color: darken($bg-color, 4);
+  }
+}
+
+@mixin button-fill-style($fill: $button-fill) {
+  @if ($fill == solid) {
+    @include button-solid-style;
+  }
+}
+
+@mixin button-style() {
+  @include button-base;
+  @include button-sizes-style;
+  @each $fill in (solid hollow clear) {
+    $selector: if($button-fill == $fill, null, ".#{$fill}");
+    &#{$selector} {
+      @include button-fill($fill);
+      @include button-fill-style($fill);
+      // @each $name, $color in palette {
+      // }
+    }
+  }
+}

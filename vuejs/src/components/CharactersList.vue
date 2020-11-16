@@ -1,11 +1,17 @@
 <template>
   <section class="characters-list">
-    <Title>Characters</Title>
+    <Title>Marvel Characters</Title>
     <div class="characters-list-wrapper">
-      <Loader class="characters-list-loader" v-if="showLoading" />
+      <Loader class="characters-list-loader" v-show="showLoading" />
       <List>
         <ListItem v-for="character in characters" v-bind:key="character.id">
-          {{ character.name }}
+          <div>{{ character.name }}</div>
+          <div>
+            <Button v-on:click.native="favorite(character)">Favorite</Button>
+            <Button v-on:click.native="showDetails(character)"
+              >Show details</Button
+            >
+          </div>
         </ListItem>
       </List>
     </div>
@@ -13,18 +19,19 @@
 </template>
 
 <script>
+import Button from "./Button";
 import Loader from "./Loader";
 import Title from "./Title";
 import List from "./List.vue";
 import ListItem from "./ListItem.vue";
 
 export default {
-  name: "CharactersList",
   components: {
     List,
     ListItem,
     Title,
     Loader,
+    Button,
   },
   props: {
     characters: {
@@ -34,6 +41,14 @@ export default {
     showLoading: {
       type: Boolean,
       default: false,
+    },
+  },
+  methods: {
+    showDetails(character) {
+      this.$emit("details", { character });
+    },
+    favorite(character) {
+      this.$emit("favorite", { character });
     },
   },
 };

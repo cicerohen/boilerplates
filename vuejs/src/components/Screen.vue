@@ -12,7 +12,6 @@ import Container from "./Container";
 import Header from "./Header.vue";
 
 export default {
-  name: "Screen",
   components: {
     Header,
     Container,

@@ -3,12 +3,11 @@
 </template>
 
 <script>
-export default {
-  name: "Container",
-};
+export default {};
 </script>
 <style lang="scss" scoped>
 .container {
+  padding: 15px;
   max-width: 1020px;
   margin: 0 auto;
 }

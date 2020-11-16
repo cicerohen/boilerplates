@@ -1,15 +1,19 @@
 <template>
   <header class="header">
-    <div class="heder__left-area">
-      <h1>VueJS boilerplate</h1>
+    <div class="heder-left-area">
+      <Title class="header-title">VueJS boilerplate</Title>
     </div>
-    <div class="heder__right-area"></div>
+    <div class="heder-right-area"></div>
   </header>
 </template>
 
 <script>
+import Title from "./Title";
+
 export default {
-  name: "Header",
+  components: {
+    Title,
+  },
 };
 </script>
 
@@ -21,5 +25,9 @@ export default {
   background-color: #e62429;
   padding: 15px;
   min-height: 80px;
+}
+
+.header-title {
+  color: #fff;
 }
 </style>
