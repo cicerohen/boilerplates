@@ -1,0 +1,7 @@
+@import "./components/avatar";
+@import "./components/button";
+@import "./components/list";
+
+@include avatar();
+@include button();
+@include list();

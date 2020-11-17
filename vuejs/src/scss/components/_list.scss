@@ -1,0 +1,30 @@
+@mixin list-base {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+@mixin list-item-base {
+  border-left-width: 0;
+  border-top-width: 1px;
+  border-right-width: 0;
+  border-bottom-width: 1px;
+  border-style: solid;
+  border-color: #ccc;
+  list-style: none;
+  margin-top: -1px;
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  justify-content: space-between;
+}
+
+@mixin list {
+  .list {
+    @include list-base();
+  }
+
+  .list-item {
+    @include list-item-base;
+  }
+}

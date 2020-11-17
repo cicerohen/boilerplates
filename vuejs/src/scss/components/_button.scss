@@ -1,4 +1,5 @@
-@import "../gobal.variables";
+@import "../settings/variables";
+@import "../utils/functions";
 
 $button-border-radius: 5px !default;
 
@@ -8,8 +9,11 @@ $button-sizes: (
   large: 1.25rem,
 ) !default;
 
-$button-color: $darker-color !default;
+$button-palette: $palette !default;
+
 $button-fill: solid !default;
+$button-bg-color: map-get($button-palette, initial) !default;
+$button-color: $darker-color !default;
 
 @mixin button-base() {
   cursor: pointer;
@@ -20,6 +24,29 @@ $button-fill: solid !default;
   padding: 0.8em 1.2em;
   font-size: map-get($button-sizes, initial);
   margin: 0.2rem;
+}
+
+@mixin button-sizes() {
+  @each $size, $value in map-remove($button-sizes, initial) {
+    &.#{$size} {
+      font-size: $value;
+    }
+  }
+}
+
+@mixin button-solid($bg-color: $button-bg-color, $color: $button-color) {
+  background-color: $bg-color;
+  border-color: darken($bg-color, 5);
+
+  @if ($color == auto) {
+    $color: choose-contrast-color($bg-color);
+  }
+
+  color: $color;
+
+  &:hover {
+    background-color: darken($bg-color, 4);
+  }
 }
 
 @mixin button-hollow {
@@ -47,50 +74,29 @@ $button-fill: solid !default;
   }
 }
 
-@mixin button-fill($fill: $button-fill) {
-  @if $fill == hollow {
+@mixin button-fill($fill: $button-fill, $bg-color: $button-bg-color) {
+  @if ($fill == solid) {
+    @include button-solid($bg-color, auto);
+  } @else if $fill == hollow {
     @include button-hollow;
   } @else if $fill == clear {
     @include button-clear;
   }
 }
 
-@mixin button-sizes-style() {
-  @each $size, $value in map-remove($button-sizes, initial) {
-    &.#{$size} {
-      font-size: $value;
-    }
-  }
-}
-
-@mixin button-solid-style(
-  $bg-color: map-get($palette, initial),
-  $color: $button-color
-) {
-  background-color: $bg-color;
-  border-color: darken($bg-color, 5);
-  color: $color;
-  &:hover {
-    background-color: darken($bg-color, 4);
-  }
-}
-
-@mixin button-fill-style($fill: $button-fill) {
-  @if ($fill == solid) {
-    @include button-solid-style;
-  }
-}
-
-@mixin button-style() {
-  @include button-base;
-  @include button-sizes-style;
-  @each $fill in (solid hollow clear) {
-    $selector: if($button-fill == $fill, null, ".#{$fill}");
-    &#{$selector} {
-      @include button-fill($fill);
-      @include button-fill-style($fill);
-      // @each $name, $color in palette {
-      // }
+@mixin button() {
+  .button {
+    @include button-base;
+    @include button-sizes;
+    @each $fill in (solid hollow clear) {
+      $selector: if($button-fill == $fill, null, ".#{$fill}");
+      &#{$selector} {
+        @each $key, $value in $button-palette {
+          &.#{$key} {
+            @include button-fill($fill, $bg-color: $value);
+          }
+        }
+      }
     }
   }
 }

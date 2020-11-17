@@ -1,26 +1,11 @@
 <template>
   <li class="list-item">
-    <slot />
+    <div v-if="$slots.left"><slot name="left" /></div>
+    <slot v-if="!$slots.left && !$slots.right" />
+    <div v-if="$slots.left"><slot name="right" /></div>
   </li>
 </template>
 
 <script>
 export default {};
 </script>
-
-<style scoped>
-.list-item {
-  border-left-width: 0;
-  border-top-width: 1px;
-  border-right-width: 0;
-  border-bottom-width: 1px;
-  border-style: solid;
-  border-color: #ccc;
-  list-style: none;
-  margin-top: -1px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px;
-}
-</style>

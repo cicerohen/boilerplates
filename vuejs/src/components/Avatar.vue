@@ -1,5 +1,5 @@
 <template>
-  <div className="avatar">
+  <div v-bind:class="style">
     <img v-bind:src="url" v-bind="name" />
     <div>{{ name }}</div>
   </div>
@@ -16,8 +16,16 @@ export default {
       type: String,
       default: "",
     },
+    size: {
+      type: String,
+      default: "small",
+    },
+  },
+  computed: {
+    style: function () {
+      return ["avatar", `${this.size}`];
+    },
   },
 };
 </script>
 
-<style scoped></style>

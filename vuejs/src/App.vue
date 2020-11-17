@@ -14,11 +14,11 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
 @font-face {
   font-family: "Ubuntu";
   src: local("Merienda"),
-    url(./assets/fonts/Ubuntu/Ubuntu-Regular.ttf) format("truetype");
+    url(./assets/fonts/Ubuntu/Ubuntu-Regular.ttf)format("truetype");
 }
 html {
   font-size: "62.5%";
@@ -28,4 +28,6 @@ body {
   padding: 0;
   margin: 0;
 }
+
+@import "./scss/app.scss";
 </style>

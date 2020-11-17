@@ -13,17 +13,16 @@ export default {
       type: String,
       default: "initial",
     },
+    variant: {
+      type: String,
+      default: "solid",
+    },
   },
   computed: {
     style: function () {
-      return ["button", `${this.size}`];
+      return ["button", `${this.variant}`, `${this.size}`, `${this.palette}`];
     },
   },
 };
 </script>
-<style lang="scss" scoped>
-@import "../scss/components/_button.scss";
-.button {
-  @include button-style;
-}
-</style>
+

@@ -4,34 +4,28 @@
     <div class="characters-list-wrapper">
       <Loader class="characters-list-loader" v-show="showLoading" />
       <List>
-        <ListItem v-for="character in characters" v-bind:key="character.id">
-          <div>{{ character.name }}</div>
-          <div>
-            <Button v-on:click.native="favorite(character)">Favorite</Button>
-            <Button v-on:click.native="showDetails(character)"
-              >Show details</Button
-            >
-          </div>
-        </ListItem>
+        <CharactersListItem
+          v-for="character in characters"
+          v-bind:key="character.id"
+          v-bind:character="character"
+        />
       </List>
     </div>
   </section>
 </template>
 
 <script>
-import Button from "./Button";
 import Loader from "./Loader";
 import Title from "./Title";
 import List from "./List.vue";
-import ListItem from "./ListItem.vue";
+import CharactersListItem from "./CharactersListItem";
 
 export default {
   components: {
     List,
-    ListItem,
+    CharactersListItem,
     Title,
     Loader,
-    Button,
   },
   props: {
     characters: {
@@ -54,12 +48,3 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-.characters-list-wrapper {
-}
-.characters-list {
-  position: relative;
-}
-.characters-list-loader {
-}
-</style>
