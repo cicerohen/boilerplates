@@ -1,14 +1,15 @@
 $gray-lighter-color: #f5f5f5;
+
 $darker-color: #202020;
-$red-color: #e62429;
+$red-color: #a40606;
 
 $default-padding: 15px;
 $default-color: $gray-lighter-color;
 
 $palette: (
-  initial: $gray-lighter-color,
-  primary: $red-color,
-  secondary: #767676,
-  success: #3adb76,
-  warning: #ffae00,
+  initial: #d4d4d4,
+  primary: #4a442d,
+  secondary: #d7c9aa,
+  success: #0cca4a,
+  warning: #f9dc5c,
 );

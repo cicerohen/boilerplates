@@ -2,18 +2,17 @@
 @import "../utils/functions";
 
 $button-border-radius: 5px !default;
-
+$button-palette: $palette !default;
 $button-sizes: (
   initial: 0.9rem,
   small: 0.75rem,
   large: 1.25rem,
 ) !default;
+$button-variants: solid, hollow, clear;
 
-$button-palette: $palette !default;
-
-$button-fill: solid !default;
+$button-variant: nth($button-variants, 1) !default;
 $button-bg-color: map-get($button-palette, initial) !default;
-$button-color: $darker-color !default;
+$button-disabled-opacity: 0.3 !default;
 
 @mixin button-base() {
   cursor: pointer;
@@ -26,15 +25,23 @@ $button-color: $darker-color !default;
   margin: 0.2rem;
 }
 
-@mixin button-sizes() {
-  @each $size, $value in map-remove($button-sizes, initial) {
+@mixin button-disabled($opacity: $button-disabled-opacity) {
+  &[disabled],
+  *.disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+}
+
+@mixin button-sizes($sizes: $button-sizes) {
+  @each $size, $value in map-remove($sizes, initial) {
     &.#{$size} {
       font-size: $value;
     }
   }
 }
 
-@mixin button-solid($bg-color: $button-bg-color, $color: $button-color) {
+@mixin button-style($bg-color: $button-bg-color, $color: auto) {
   background-color: $bg-color;
   border-color: darken($bg-color, 5);
 
@@ -45,23 +52,29 @@ $button-color: $darker-color !default;
   color: $color;
 
   &:hover {
-    background-color: darken($bg-color, 4);
+    background-color: darken($bg-color, 5);
   }
 }
 
-@mixin button-hollow {
-  &,
-  &.disabled,
-  &[disabled] {
-    &,
-    &:hover,
-    &:focus {
-      background-color: transparent;
-    }
+@mixin button-hollow-style($color: $button-bg-color) {
+  border-color: $color;
+  background-color: transparent;
+  color: $color;
+  &:not(disabled):hover {
+    background-color: lighten($color, 70);
   }
+  // &,
+  // &.disabled,
+  // &[disabled] {
+  //   &,
+  //   &:hover,
+  //   &:focus {
+  //     background-color: transparent;
+  //   }
+  // }
 }
 
-@mixin button-clear {
+@mixin button-clear-style {
   &,
   &.disabled,
   &[disabled] {
@@ -74,13 +87,9 @@ $button-color: $darker-color !default;
   }
 }
 
-@mixin button-fill($fill: $button-fill, $bg-color: $button-bg-color) {
-  @if ($fill == solid) {
-    @include button-solid($bg-color, auto);
-  } @else if $fill == hollow {
-    @include button-hollow;
-  } @else if $fill == clear {
-    @include button-clear;
+@mixin button-variant($variant: $button-variant, $color: $button-bg-color) {
+  @if ($variant == solid) {
+    @include button-style($bg-color: $color);
   }
 }
 
@@ -88,12 +97,14 @@ $button-color: $darker-color !default;
   .button {
     @include button-base;
     @include button-sizes;
-    @each $fill in (solid hollow clear) {
-      $selector: if($button-fill == $fill, null, ".#{$fill}");
+    @include button-disabled;
+    @include button-style;
+    @each $variant in $button-variants {
+      $selector: if($button-variant == $variant, null, ".#{$variant}");
       &#{$selector} {
         @each $key, $value in $button-palette {
           &.#{$key} {
-            @include button-fill($fill, $bg-color: $value);
+            @include button-variant($variant, $color: $value);
           }
         }
       }

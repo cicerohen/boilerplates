@@ -1,3 +1,5 @@
+@import "../settings/variables";
+
 @mixin list-base {
   list-style: none;
   padding: 0;
@@ -19,6 +21,11 @@
   justify-content: space-between;
 }
 
+@mixin list-item-area-base() {
+  display: flex;
+  align-items: center;
+}
+
 @mixin list {
   .list {
     @include list-base();
@@ -26,5 +33,10 @@
 
   .list-item {
     @include list-item-base;
+  }
+
+  .list-item-left-area,
+  .list-item-right-area {
+    @include list-item-area-base;
   }
 }

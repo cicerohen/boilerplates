@@ -1,7 +1,16 @@
 @import "./components/avatar";
 @import "./components/button";
 @import "./components/list";
+@import "./components/list-with-avatar";
+@import "./components/header";
+@import "./components/title";
 
-@include avatar();
-@include button();
-@include list();
+@include avatar;
+@include button;
+
+@include list;
+@include list-with-avatar;
+
+@include title;
+
+@include header;

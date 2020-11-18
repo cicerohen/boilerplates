@@ -16,18 +16,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss" scoped>
-.header {
-  align-items: center;
-  display: flex;
-  justify-content: space-between;
-  background-color: #e62429;
-  padding: 15px;
-  min-height: 80px;
-}
-
-.header-title {
-  color: #fff;
-}
-</style>

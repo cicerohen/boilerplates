@@ -1,12 +1,12 @@
 <template>
-  <ListItemWithAvatar v-bind:avatarUrl="avatarUrl" class="characters-list-item">
-    <div>
-      <Button>Favorite</Button>
-      <Button>Show details</Button>
-    </div>
+  <ListItemWithAvatar v-bind:avatarUrl="avatarUrl">
+    <Title slot="left">{{ character.name }}</Title>
+    <Button slot="right">Favorite</Button>
+    <Button slot="right">Show details</Button>
   </ListItemWithAvatar>
 </template>
 <script>
+import Title from "./Title";
 import Button from "./Button";
 import ListItemWithAvatar from "./ListItemWithAvatar";
 
@@ -18,6 +18,7 @@ export default {
     },
   },
   components: {
+    Title,
     Button,
     ListItemWithAvatar,
   },

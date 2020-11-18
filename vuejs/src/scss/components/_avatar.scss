@@ -1,18 +1,42 @@
+@import "../settings/variables";
+
+$avatar-palette: $palette !default;
+$avatar-border-color: map-get($avatar-palette, initial) !important;
+
 $avatar-sizes: (
   small: 60px,
   large: 80px,
 ) !default;
 
 @mixin avatar-base() {
-  border-radius: 50%;
-  overflow: hidden;
-  width: map-get($avatar-sizes, small);
-  height: map-get($avatar-sizes, small);
+  > img {
+    width: map-get($avatar-sizes, small);
+    height: map-get($avatar-sizes, small);
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 50%;
+    padding: 2px;
+  }
+}
+
+@mixin avatar-style($border-color: $avatar-border-color) {
+  > img {
+    border-color: $border-color;
+  }
+}
+
+@mixin avatar-palette($palette: $avatar-palette) {
+  @each $key, $value in $avatar-palette {
+    &.#{$key} {
+      @include avatar-style($border-color: $value);
+    }
+  }
 }
 
 @mixin avatar {
   .avatar {
     @include avatar-base;
+    @include avatar-palette;
     > img {
       max-width: 100%;
       max-height: 100%;

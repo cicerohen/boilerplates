@@ -1,8 +1,12 @@
 <template>
   <li class="list-item">
-    <div v-if="$slots.left"><slot name="left" /></div>
+    <div class="list-item-left-area" v-if="$slots.left">
+      <slot name="left" />
+    </div>
     <slot v-if="!$slots.left && !$slots.right" />
-    <div v-if="$slots.left"><slot name="right" /></div>
+    <div class="list-item-right-area" v-if="$slots.left">
+      <slot name="right" />
+    </div>
   </li>
 </template>
 

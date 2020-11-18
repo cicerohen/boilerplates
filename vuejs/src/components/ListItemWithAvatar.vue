@@ -1,7 +1,8 @@
 <template>
-  <ListItem>
+  <ListItem class="list-item-with-avatar">
     <Avatar slot="left" v-bind:url="avatarUrl" />
-    <div slot="right" name="right">dsdsds</div>
+    <slot name="left" slot="left" />
+    <slot name="right" slot="right" />
   </ListItem>
 </template>
 

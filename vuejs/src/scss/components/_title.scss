@@ -1,0 +1,26 @@
+$title-sizes: (
+  initial: 0.9rem,
+  small: 0.75rem,
+  large: 1.25rem,
+) !default;
+
+@mixin title-base {
+  font-size: map-get($title-sizes, initial);
+}
+
+@mixin title-sizes() {
+  @each $size, $value in map-remove($title-sizes, initial) {
+    &.#{$size} {
+      font-size: $value;
+    }
+  }
+}
+
+@mixin title-style() {
+}
+
+@mixin title {
+  .title {
+    @include title-base;
+  }
+}

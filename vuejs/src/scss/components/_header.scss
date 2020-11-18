@@ -1,0 +1,22 @@
+@import "../settings/variables";
+
+$header-bg-color: $red-color !default;
+
+@mixin header-base {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+  min-height: 70px;
+}
+
+@mixin header-style {
+  background-color: $header-bg-color;
+}
+
+@mixin header {
+  .header {
+    @include header-base;
+    @include header-style;
+  }
+}
