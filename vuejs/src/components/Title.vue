@@ -5,13 +5,17 @@
 export default {
   props: {
     size: {
-      type: Number,
-      default: 1,
+      type: String,
+      default: "one",
+    },
+    palette: {
+      type: String,
+      default: "primary",
     },
   },
   computed: {
     style: function () {
-      return ["title", `title-size-${this.size}`];
+      return ["title", `${this.size}`, `${this.palette}`];
     },
   },
 };
