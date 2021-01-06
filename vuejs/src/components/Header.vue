@@ -1,7 +1,7 @@
 <template>
   <header class="header">
     <div class="heder-left-area">
-      <Title class="header-title">VueJS boilerplate</Title>
+      <Title class="header-title" palette="secondary">VueJS boilerplate</Title>
     </div>
     <div class="heder-right-area"></div>
   </header>
