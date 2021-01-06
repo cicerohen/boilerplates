@@ -4,13 +4,14 @@
 @import "./components/list-with-avatar";
 @import "./components/header";
 @import "./components/title";
+@import "./components/container";
+@import "./components/modal";
 
 @include avatar;
 @include button;
-
 @include list;
 @include list-with-avatar;
-
 @include title;
-
 @include header;
+@include container;
+@include modal;
