@@ -1,5 +1,5 @@
 <template>
-  <button v-bind:class="style"><slot /></button>
+  <button v-bind:class="classes"><slot /></button>
 </template>
 
 <script>
@@ -11,15 +11,15 @@ export default {
     },
     palette: {
       type: String,
-      default: "initial",
+      default: "primary",
     },
     variant: {
       type: String,
-      default: "solid",
+      default: "hollow",
     },
   },
   computed: {
-    style: function () {
+    classes: function () {
       return ["button", `${this.variant}`, `${this.size}`, `${this.palette}`];
     },
   },

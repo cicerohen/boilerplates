@@ -60,40 +60,20 @@ $button-disabled-opacity: 0.3 !default;
   border-color: $color;
   background-color: transparent;
   color: $color;
-  &:not(disabled):hover {
+  &:hover {
     background-color: lighten($color, 70);
-  }
-  // &,
-  // &.disabled,
-  // &[disabled] {
-  //   &,
-  //   &:hover,
-  //   &:focus {
-  //     background-color: transparent;
-  //   }
-  // }
-}
-
-@mixin button-clear-style {
-  &,
-  &.disabled,
-  &[disabled] {
-    &,
-    &:hover,
-    &:focus {
-      border-color: transparent;
-      background-color: transparent;
-    }
   }
 }
 
 @mixin button-variant($variant: $button-variant, $color: $button-bg-color) {
   @if ($variant == solid) {
     @include button-style($bg-color: $color);
+  } @else if($variant == hollow) {
+    @include button-hollow-style($color);
   }
 }
 
-@mixin button() {
+@mixin button {
   .button {
     @include button-base;
     @include button-sizes;
