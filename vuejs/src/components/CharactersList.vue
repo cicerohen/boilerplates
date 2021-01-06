@@ -2,9 +2,10 @@
   <section class="characters-list">
     <Title>Marvel Characters</Title>
     <div class="characters-list-wrapper">
-      <Loader class="characters-list-loader" v-show="showLoading" />
+      <Loader class="characters-list-loader" v-if="showLoading" />
       <List>
         <CharactersListItem
+          v-on="$listeners"
           v-for="character in characters"
           v-bind:key="character.id"
           v-bind:character="character"
@@ -35,14 +36,6 @@ export default {
     showLoading: {
       type: Boolean,
       default: false,
-    },
-  },
-  methods: {
-    showDetails(character) {
-      this.$emit("details", { character });
-    },
-    favorite(character) {
-      this.$emit("favorite", { character });
     },
   },
 };
