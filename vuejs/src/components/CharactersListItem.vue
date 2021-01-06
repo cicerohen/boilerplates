@@ -1,8 +1,12 @@
 <template>
   <ListItemWithAvatar v-bind:avatarUrl="avatarUrl">
     <Title slot="left">{{ character.name }}</Title>
-    <Button slot="right">Favorite</Button>
-    <Button slot="right">Show details</Button>
+    <Button slot="right" v-on:click.native="favorite(character)"
+      >Favorite</Button
+    >
+    <Button slot="right" v-on:click.native="showDetails(character)"
+      >Show details</Button
+    >
   </ListItemWithAvatar>
 </template>
 <script>
@@ -29,6 +33,14 @@ export default {
         return `${thumbnail?.path}.${thumbnail.extension}`;
       }
       return "";
+    },
+  },
+  methods: {
+    showDetails(character) {
+      this.$emit("details", { character });
+    },
+    favorite(character) {
+      this.$emit("favorite", { character });
     },
   },
 };
