@@ -1,5 +1,5 @@
 <template>
-  <div v-bind:class="style">
+  <div v-bind:class="classes">
     <img v-bind:src="url" v-bind="name" />
   </div>
 </template>
@@ -25,7 +25,7 @@ export default {
     },
   },
   computed: {
-    style: function () {
+    classes: function () {
       return ["avatar", `${this.palette}`, `${this.size}`];
     },
   },
