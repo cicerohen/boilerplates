@@ -7,7 +7,8 @@
     />
     <CharacterDetailsModal
       title="Details"
-      v-show="modalIsOpen"
+      v-if="modalIsOpen"
+      v-bind:character="character"
       v-on:close="closeModal"
     />
   </Screen>
@@ -20,9 +21,10 @@ import CharactersList from "../../components/CharactersList";
 import fetchApi from "../../services/api";
 
 export default {
-  data: function() {
+  data: function () {
     return {
       characters: [],
+      character: {},
       isLoadingCharacters: true,
       modalIsOpen: false,
     };
@@ -33,10 +35,12 @@ export default {
     CharactersList,
   },
   methods: {
-    openModal() {
+    openModal({ character }) {
+      this.character = character;
       this.modalIsOpen = true;
     },
     closeModal() {
+      this.character = {};
       this.modalIsOpen = false;
     },
     async fetchCharacters() {
