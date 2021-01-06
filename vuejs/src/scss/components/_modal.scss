@@ -1,0 +1,39 @@
+$modal-bg-color: rgba(0, 0, 0, 0.5);
+
+@mixin modal {
+  .modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $modal-bg-color;
+    transition: opacity 0.3s ease;
+  }
+
+  .modal {
+    background-color: #fff;
+    min-width: 320px;
+    max-width: 80%;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px #000;
+  }
+
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+  }
+
+  .modal-body {
+    padding: 15px;
+  }
+
+  .modal-close-button {
+    cursor: pointer;
+  }
+}

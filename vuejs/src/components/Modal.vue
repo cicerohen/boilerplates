@@ -1,6 +1,9 @@
 <template>
   <transition name="modal">
-    <div class="modal-backdrop">
+    <div
+      class="modal-backdrop"
+      v-on="{ click: (closeOnClickBackdrop && close) || null }"
+    >
       <section class="modal">
         <header class="modal-header">
           <div class="modal-header-left-area">
@@ -13,7 +16,6 @@
         <main class="modal-body">
           <slot />
         </main>
-        <footer></footer>
       </section>
     </div>
   </transition>
@@ -29,8 +31,9 @@ export default {
       type: String,
       default: "",
     },
-    onClose: {
-      type: Function,
+    closeOnClickBackdrop: {
+      type: Boolean,
+      default: true,
     },
   },
   components: {
@@ -42,45 +45,5 @@ export default {
       this.$emit("close");
     },
   },
-  created() {
-    console.log("listener", typeof this.$listeners);
-  },
 };
 </script>
-
-<style lang="scss" scoped>
-.modal-backdrop {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: rgba(0, 0, 0, 0.5);
-  transition: opacity 0.3s ease;
-}
-
-.modal {
-  background-color: #fff;
-  max-width: 80%;
-  border-radius: 5px;
-  box-shadow: 0 1px 3px #000;
-}
-
-.modal-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px;
-}
-
-.modal-body {
-  padding: 15px;
-}
-
-.modal-close-button {
-  cursor: pointer;
-}
-</style>
