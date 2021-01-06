@@ -4,7 +4,7 @@
     class="character-details-modal"
     v-on="$listeners"
   >
-    <Avatar url="" />
+    <Avatar v-bind:url="avatarUrl" />
   </Modal>
 </template>
 
@@ -21,6 +21,15 @@ export default {
     character: {
       type: Object,
       default: () => ({}),
+    },
+  },
+  computed: {
+    avatarUrl() {
+      const { path, extension } = this.character.thumbnail || {};
+      if (path && extension) {
+        return `${path}.${extension}`;
+      }
+      return "";
     },
   },
 };
