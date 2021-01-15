@@ -1,0 +1,21 @@
+{
+  "name": "monorepo",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "lerna run dev --stream",
+    "test": "lerna run test --stream",
+    "build": "lerna run build --stream",
+    "start": "yarn build && env-cmd -f .env.production node server.js",
+    "clean": "lerna clean"
+  },
+  "devDependencies": {
+    "lerna": "^3.20.2"
+  },
+  "dependencies": {
+    "env-cmd": "^10.1.0",
+    "express": "^4.17.1"
+  }
+}

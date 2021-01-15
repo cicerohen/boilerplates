@@ -1,0 +1,42 @@
+{
+  "name": "@monorepo/app",
+  "homepage": ".",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
+    "babel-plugin-macros": "^2.8.0",
+    "jest-styled-components": "^7.0.3",
+    "polished": "^3.5.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-router-dom": "^5.1.2",
+    "react-scripts": "3.4.0",
+    "react-share": "^4.1.0",
+    "styled-components": "^5.0.1"
+  },
+  "scripts": {
+    "start": "PORT=3000 react-scripts start",
+    "dev": "yarn start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --colors",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
