@@ -1,5 +1,7 @@
 import React from "react";
 
+import { ComponentExample, useHookExample } from "@monorepo/shared";
+
 import View from "../../components/View";
 import AwesomeThingsList from "../../components/AwesomeThingsList";
 
@@ -37,9 +39,12 @@ const awesomeThings = [
 ];
 
 const HomeViewContainer = () => {
+  const example = useHookExample();
   return (
     <View>
       <Hero title="Monorepo with Lerna" />
+      <ComponentExample />
+      {example}
       <AwesomeThingsList withMargin things={awesomeThings} />
     </View>
   );

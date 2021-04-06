@@ -5,9 +5,9 @@
     "packages/*"
   ],
   "scripts": {
-    "dev": "lerna run dev --stream",
-    "test": "lerna run test --stream",
-    "build": "lerna run build --stream",
+    "dev": "lerna run --parallel dev --stream",
+    "test": "lerna run --parallel test --stream",
+    "build": "lerna run --parallel build --stream",
     "start": "yarn build && env-cmd -f .env.production node server.js",
     "clean": "lerna clean"
   },
