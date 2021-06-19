@@ -1,0 +1,10 @@
+@import "../settings/variables";
+
+@mixin list-with-avatar {
+  .list-item-with-avatar {
+    @extend .list-item;
+    .avatar {
+      margin-right: $default-padding;
+    }
+  }
+}

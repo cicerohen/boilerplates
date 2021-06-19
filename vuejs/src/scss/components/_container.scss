@@ -1,0 +1,10 @@
+@mixin container-base {
+  padding: 15px;
+  max-width: 1020px;
+  margin: 0 auto;
+}
+@mixin container {
+  .container {
+    @include container-base();
+  }
+}

@@ -1,0 +1,28 @@
+@import "../settings/variables";
+
+$title-palette: $palette !default;
+$title-color: map-get($title-palette, initial) !default;
+
+@mixin title-base {
+  text-transform: uppercase;
+  font-size: 1rem;
+}
+
+@mixin title-style($color: $title-color) {
+  color: $color;
+}
+
+@mixin title-scale($ratio) {
+}
+
+@mixin title {
+  .title {
+    @include title-base;
+    @include title-style;
+    @each $key, $value in $title-palette {
+      &.#{$key} {
+        @include title-style($color: $value);
+      }
+    }
+  }
+}
