@@ -1,12 +1,16 @@
 [submodule "boilerplate-reactjs"]
 	path = boilerplate-reactjs
 	url = git@github.com:cicerohen/boilerplate-reactjs.git
+	update = merge
 [submodule "boilerplate-lerna"]
 	path = boilerplate-lerna
 	url = git@github.com:cicerohen/boilerplate-lerna.git
+	update = merge
 [submodule "boilerplate-react-native"]
 	path = boilerplate-react-native
 	url = git@github.com:cicerohen/boilerplate-react-native.git
+	update = merge
 [submodule "boilerplate-vuejs"]
 	path = boilerplate-vuejs
 	url = git@github.com:cicerohen/boilerplate-vuejs.git
+	update = merge
